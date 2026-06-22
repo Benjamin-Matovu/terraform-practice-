@@ -19,6 +19,7 @@ variable "instance_type" {
 resource "aws_instance" "ec2" {
   ami = "ami-04a81a99f5ec58529"
   instance_type = var.instance_type
+  associate_public_ip_address = true
   tags = {
     Name = "my_server"
   }
@@ -26,4 +27,4 @@ resource "aws_instance" "ec2" {
 
 output "server_id" {
   value = aws_instance.ec2.id
-}
+}  
