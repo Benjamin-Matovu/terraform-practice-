@@ -17,7 +17,7 @@ variable "instance_type" {
 }
 
 resource "aws_instance" "ec2" {
-  ami = "ami-0c55b159cbfafe1f0"
+  ami = "ami-04a81a99f5ec58529"
   instance_type = var.instance_type
   tags = {
     Name = "my_server"
