@@ -11,22 +11,19 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "environment" {
-  type        = string
-  default     = "dev"
-  description = "Environment name"
+variable "instance_type" {
+  type = string
+  default = "t2.micro"
 }
 
-resource "aws_s3_bucket" "my_bucket" {
-  bucket = "daddy-app-${var.environment}-bucket"
-
+resource "aws_instance" "ec2" {
+  ami = "ami-0c55b159cbfafe1f0"
+  instance_type = var.instance_type
   tags = {
-    Name        = "My App Bucket"
-    Environment = var.environment
+    Name = "my_server"
   }
 }
 
-output "bucket_name" {
-  value       = aws_s3_bucket.my_bucket.bucket
-  description = "The name of the S3 bucket"
+output "server_id" {
+  value = aws_instance.ec2.id
 }
